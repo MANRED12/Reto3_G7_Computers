@@ -1,5 +1,7 @@
 package com.team7.computercenter.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -10,20 +12,13 @@ public class Score implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idScore;
-    private Integer score;
     @Column(length = 250)
     private String message;
+    private Integer scoreQ;
 
-    /*@OneToOne(mappedBy = "score")
+    @OneToOne
+    @JsonIgnoreProperties("score")
     private Reservation reservation;
-
-    public Reservation getReservation() {
-        return reservation;
-    }
-
-    public void setReservation(Reservation reservation) {
-        this.reservation = reservation;
-    }*/
 
     public Integer getIdScore() {
         return idScore;
@@ -31,14 +26,6 @@ public class Score implements Serializable {
 
     public void setIdScore(Integer idScore) {
         this.idScore = idScore;
-    }
-
-    public Integer getScore() {
-        return score;
-    }
-
-    public void setScore(Integer score) {
-        this.score = score;
     }
 
     public String getMessage() {
@@ -49,5 +36,20 @@ public class Score implements Serializable {
         this.message = message;
     }
 
+    public Integer getScoreQ() {
+        return scoreQ;
+    }
+
+    public void setScoreQ(Integer scoreQ) {
+        this.scoreQ = scoreQ;
+    }
+
+    public Reservation getReservation() {
+        return reservation;
+    }
+
+    public void setReservation(Reservation reservation) {
+        this.reservation = reservation;
+    }
 }
 
