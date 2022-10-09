@@ -14,7 +14,7 @@ public class Score implements Serializable {
     @Column(length = 250)
     private String message;
 
-    @OneToOne(mappedBy = "score")
+    /*@OneToOne(mappedBy = "score")
     private Reservation reservation;
 
     public Reservation getReservation() {
@@ -23,7 +23,7 @@ public class Score implements Serializable {
 
     public void setReservation(Reservation reservation) {
         this.reservation = reservation;
-    }
+    }*/
 
     public Integer getIdScore() {
         return idScore;
@@ -48,5 +48,6 @@ public class Score implements Serializable {
     public void setMessage(String message) {
         this.message = message;
     }
+
 }
 
