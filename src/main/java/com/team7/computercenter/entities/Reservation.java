@@ -32,7 +32,7 @@ public class Reservation implements Serializable {
     /*@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="score_id",referencedColumnName = "idScore")
     private Score scores;*/
-    private String score;
+    private Integer score;
 
     public Integer getIdReservation() {
         return idReservation;
@@ -82,19 +82,11 @@ public class Reservation implements Serializable {
         this.client = client;
     }
 
-    /*public Score getScores() {
-        return scores;
-    }
-
-    public void setScores(Score scores) {
-        this.scores = scores;
-    }*/
-
-    public String getScore() {
+    public Integer getScore() {
         return score;
     }
 
-    public void setScore(String score) {
+    public void setScore(Integer score) {
         this.score = score;
     }
 }
