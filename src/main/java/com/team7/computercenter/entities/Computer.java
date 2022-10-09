@@ -23,7 +23,7 @@ public class Computer implements Serializable {
     @Column(length = 250)
     private String description;
     @ManyToOne
-    @JoinColumn(name = "category")
+    @JoinColumn(name = "idCategory")
     @JsonIgnoreProperties("computers")
     private Category category;
 
