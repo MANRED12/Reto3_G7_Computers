@@ -63,4 +63,3 @@ public class ScoreService {
         return flag;
     }
 }
-
