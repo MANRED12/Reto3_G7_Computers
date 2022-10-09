@@ -1,8 +1,5 @@
 package com.team7.computercenter.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -17,9 +14,7 @@ public class Score implements Serializable {
     @Column(length = 250)
     private String message;
 
-    @ManyToOne
-    @JoinColumn(name = "idReservation")
-    @JsonIgnoreProperties("scores")
+    @OneToOne(mappedBy = "score")
     private Reservation reservation;
 
     public Reservation getReservation() {
