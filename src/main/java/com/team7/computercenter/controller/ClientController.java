@@ -4,6 +4,7 @@ import com.team7.computercenter.entities.Category;
 import com.team7.computercenter.entities.Client;
 import com.team7.computercenter.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,6 +21,7 @@ public class ClientController {
         return clientService.getAll();
     }
     @PostMapping("/save")
+    @ResponseStatus(HttpStatus.CREATED)
     public Client save(@RequestBody Client c){
 
         return clientService.save(c);

@@ -5,6 +5,7 @@ import com.team7.computercenter.entities.Computer;
 import com.team7.computercenter.service.CategoryService;
 import com.team7.computercenter.service.ComputerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,6 +22,7 @@ public class CategoryController {
         return categoryService.getAll();
     }
     @PostMapping("/save")
+    @ResponseStatus(HttpStatus.CREATED)
     public Category save(@RequestBody Category c){
 
         return categoryService.save(c);

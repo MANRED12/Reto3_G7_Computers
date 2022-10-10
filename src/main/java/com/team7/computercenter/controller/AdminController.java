@@ -4,6 +4,7 @@ import com.team7.computercenter.entities.Admin;
 import com.team7.computercenter.entities.Category;
 import com.team7.computercenter.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,6 +21,7 @@ public class AdminController {
         return adminService.getAll();
     }
     @PostMapping("/save")
+    @ResponseStatus(HttpStatus.CREATED)
     public Admin save(@RequestBody Admin a){
 
         return adminService.save(a);
