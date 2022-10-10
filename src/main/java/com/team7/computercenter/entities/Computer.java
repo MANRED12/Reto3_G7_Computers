@@ -7,32 +7,35 @@ import java.io.Serializable;
 import java.util.List;
 
 @Entity
-@Table(name ="computer")
+@Table(name ="computer")//Se nombra la tabla
 public class Computer implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)//Se agrega la columna Id como autoIncremental
     private Integer id;
-    @Column(length = 45)
+    @Column(length = 45)//Se establece la longitud máxima del campo name
     private String name;
-    @Column(length = 45)
+    @Column(length = 45)//Se establece la longitud máxima del campo brand
     private String brand;
     private Integer year;
-    @Column(length = 250)
+    @Column(length = 250)//Se establece la longitud máxima del campo year
     private String description;
-    @ManyToOne
+    @ManyToOne//Creacion de relacion muchos a uno con la tabla category
     @JoinColumn(name = "idCategory")
     @JsonIgnoreProperties("computers")
     private Category category;
 
+    //Creacion de relacion uno a muchos con la tabla messages
     @OneToMany(cascade = {CascadeType.PERSIST},mappedBy = "computer")
-    @JsonIgnoreProperties({"computer","client"})
+    @JsonIgnoreProperties({"computer","client"})//Se solicita que no se repitan los datos de las tablas computer y client
     private List<Message> messages;
 
+    //Creacion de relacion uno a muchos con la tabla reservation
     @OneToMany(cascade = {CascadeType.PERSIST},mappedBy = "computer")
-    @JsonIgnoreProperties({"computer","messages"})
+    @JsonIgnoreProperties({"computer","messages"})///Se solicita que no se repitan los datos de las tablas computer y client
     private List<Reservation> reservations;
 
+    //Getters and setters
     public Integer getId() {
         return id;
     }
