@@ -24,4 +24,9 @@ public class ComputerController {
     public Computer save(@RequestBody Computer p){
         return computerService.save(p);
     }
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public boolean delete(@PathVariable("id")int id){
+        return computerService.delete(id);
+    }
 }

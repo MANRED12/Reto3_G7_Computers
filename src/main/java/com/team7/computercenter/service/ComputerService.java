@@ -60,13 +60,11 @@ public class ComputerService {
         }
     }
     public boolean delete(int id){
-        boolean flag = false;
-        Optional<Computer>p=computerRepository.getComputer(id);
-        if(p.isPresent()){
-            computerRepository.delete(p.get());
-            flag=true;
-        }
-        return flag;
+        Boolean del = getComputer(id).map(computer -> {
+            computerRepository.delete(computer);
+            return true;
+        }).orElse(false);
+        return del;
     }
 }
 

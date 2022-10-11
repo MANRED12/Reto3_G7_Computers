@@ -23,7 +23,11 @@ public class ClientController {
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
     public Client save(@RequestBody Client c){
-
         return clientService.save(c);
+    }
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public boolean delete(@PathVariable("id")int id){
+        return clientService.delete(id);
     }
 }
