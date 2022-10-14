@@ -17,47 +17,43 @@ public class MessageService {
     public List<Message> getAll(){
         return messageRepository.getAll();
     }
-    public Optional<Message> getMessage(int idMessage){
-        return messageRepository.getMessage(idMessage);
+    public Optional<Message> getMessage(int messageId) {
+        return messageRepository.getMessage(messageId);
     }
-    public Message save(Message m){
-        if(m.getIdMessage() == null){
-            return messageRepository.save(m);
-        }else {
-            Optional<Message> e = messageRepository.getMessage(m.getIdMessage());
-            if(e.isPresent()){
-                return m;
+    public Message save(Message message){
+        if(message.getIdMessage()==null){
+            return messageRepository.save(message);
+        }else{
+            Optional<Message> e= messageRepository.getMessage(message.getIdMessage());
+            if(!e.isPresent()){
+                return messageRepository.save(message);
             }else{
-                return messageRepository.save(m);
+                return message;
             }
         }
     }
-    public Message update(Message m){
-        if(m.getIdMessage()!=null){
-            Optional<Message> q = messageRepository.getMessage(m.getIdMessage());
-            if(q.isPresent()){
-                if(m.getComputer()!=null){
-                    q.get().setComputer(m.getComputer());
+    public Message update(Message message){
+        if(message.getIdMessage()!=null){
+            Optional<Message> e= messageRepository.getMessage(message.getIdMessage());
+            if(e.isPresent()){
+                if(message.getMessageText()!=null){
+                    e.get().setMessageText(message.getMessageText());
                 }
-                if(m.getMessageText()!=null){
-                    q.get().setMessageText(m.getMessageText());
-                }
-
-                messageRepository.save(q.get());
-                return q.get();
+                messageRepository.save(e.get());
+                return e.get();
             }else{
-                return m;
+                return message;
             }
         }else{
-            return m;
+            return message;
         }
     }
-    public boolean delete(int idMessage){
-        Boolean del = getMessage(idMessage).map(message -> {
+    public boolean deleteMessage (int id){
+        Boolean d = getMessage(id).map(message -> {
             messageRepository.delete(message);
             return true;
         }).orElse(false);
-        return del;
+        return d;
     }
 }
 

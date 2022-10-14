@@ -1,6 +1,5 @@
 package com.team7.computercenter.service;
 
-import com.team7.computercenter.entities.Admin;
 import com.team7.computercenter.entities.Client;
 import com.team7.computercenter.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,52 +16,49 @@ public class ClientService {
     public List<Client> getAll(){
         return clientRepository.getAll();
     }
-    public Optional<Client> getClient(int idClient){
-        return clientRepository.getClient(idClient);
+    public Optional<Client> getClient(int clientId) {
+        return clientRepository.getClient(clientId);
     }
-    public Client save(Client c){
-        if(c.getIdClient() == null){
-            return clientRepository.save(c);
-        }else {
-            Optional<Client> e = clientRepository.getClient(c.getIdClient());
-            if(e.isPresent()){
-                return c;
+    public Client save(Client client){
+        if(client.getIdClient()==null){
+            return clientRepository.save(client);
+        }else{
+            Optional<Client> e= clientRepository.getClient(client.getIdClient());
+            if(!e.isPresent()){
+                return clientRepository.save(client);
             }else{
-                return clientRepository.save(c);
+                return client;
             }
         }
     }
-    public Client update(Client c){
-        if(c.getIdClient()!=null){
-            Optional<Client> q = clientRepository.getClient(c.getIdClient());
-            if(q.isPresent()){
-                if(c.getName()!=null){
-                    q.get().setName(c.getName());
+    public Client update(Client client){
+        if(client.getIdClient()!=null){
+            Optional<Client> e= clientRepository.getClient(client.getIdClient());
+            if(e.isPresent()){
+                if(client.getName()!=null){
+                    e.get().setName(client.getName());
                 }
-                if(c.getEmail()!=null){
-                    q.get().setEmail(c.getEmail());
+                if(client.getAge()!=null){
+                    e.get().setAge(client.getAge());
                 }
-                if(c.getAge()!=null){
-                    q.get().setAge(c.getAge());
+                if(client.getPassword()!=null){
+                    e.get().setPassword(client.getPassword());
                 }
-                if(c.getPassword()!=null){
-                    q.get().setPassword(c.getPassword());
-                }
-                clientRepository.save(q.get());
-                return q.get();
+                clientRepository.save(e.get());
+                return e.get();
             }else{
-                return c;
+                return client;
             }
         }else{
-            return c;
+            return client;
         }
     }
-    public boolean delete(int idClient){
-        Boolean del = getClient(idClient).map(client -> {
+    public boolean deleteClient (int id){
+        Boolean d = getClient(id).map(client -> {
             clientRepository.delete(client);
             return true;
         }).orElse(false);
-        return del;
+        return d;
     }
 }
 

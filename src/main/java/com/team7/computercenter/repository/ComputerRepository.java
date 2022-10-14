@@ -10,7 +10,6 @@ import java.util.Optional;
 
 @Repository
 public class ComputerRepository {
-
     @Autowired
     private ComputerCrudRepository computerCrudRepository;
 
@@ -20,10 +19,10 @@ public class ComputerRepository {
     public Optional<Computer> getComputer(int id){
         return computerCrudRepository.findById(id);
     }
-    public Computer save(Computer p){
-        return computerCrudRepository.save(p);
+    public Computer save(Computer computer){
+        return computerCrudRepository.save(computer);
     }
-    public void delete(Computer p){
-        computerCrudRepository.delete(p);
+    public void delete(Computer computer){
+        computerCrudRepository.delete(computer);
     }
 }

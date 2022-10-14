@@ -16,55 +16,55 @@ public class ComputerService {
     public List<Computer> getAll(){
         return computerRepository.getAll();
     }
-    public Optional<Computer> getComputer(int id){
-        return computerRepository.getComputer(id);
+    public Optional<Computer> getComputer(int computerId) {
+        return computerRepository.getComputer(computerId);
     }
-    public Computer save(Computer p){
-        if(p.getId() == null){
-            return computerRepository.save(p);
-        }else {
-            Optional<Computer> e = computerRepository.getComputer(p.getId());
+    public Computer save(Computer computer){
+        if(computer.getId()==null){
+            return computerRepository.save(computer);
+        }else{
+            Optional<Computer>e= computerRepository.getComputer(computer.getId());
             if(!e.isPresent()){
-                return computerRepository.save(p);
+                return computerRepository.save(computer);
             }else{
-                return p;
+                return computer;
             }
         }
     }
-    public Computer update(Computer p){
-        if(p.getId()!=null){
-            Optional<Computer> q = computerRepository.getComputer(p.getId());
-            if(q.isPresent()){
-                if(p.getBrand()!=null){
-                    q.get().setBrand(p.getBrand());
+    public Computer update(Computer computer){
+        if(computer.getId()!=null){
+            Optional<Computer> e= computerRepository.getComputer(computer.getId());
+            if(e.isPresent()){
+                if(computer.getName()!=null){
+                    e.get().setName(computer.getName());
                 }
-                if(p.getName()!=null){
-                    q.get().setName(p.getName());
+                if(computer.getBrand()!=null){
+                    e.get().setBrand(computer.getBrand());
                 }
-                if(p.getYear()!=null){
-                    q.get().setYear(p.getYear());
+                if(computer.getYear()!=null){
+                    e.get().setYear(computer.getYear());
                 }
-                if(p.getDescription()!=null){
-                    q.get().setDescription(p.getDescription());
+                if(computer.getDescription()!=null){
+                    e.get().setDescription(computer.getDescription());
                 }
-                if(p.getCategory()!=null){
-                    q.get().setCategory(p.getCategory());
+                if(computer.getCategory()!=null){
+                    e.get().setCategory(computer.getCategory());
                 }
-                computerRepository.save(q.get());
-                return q.get();
+                computerRepository.save(e.get());
+                return e.get();
             }else{
-                return p;
+                return computer;
             }
         }else{
-            return p;
+            return computer;
         }
     }
-    public boolean delete(int id){
-        Boolean del = getComputer(id).map(computer -> {
+    public boolean deleteComputer (int id){
+        Boolean d = getComputer(id).map(computer -> {
             computerRepository.delete(computer);
             return true;
         }).orElse(false);
-        return del;
+        return d;
     }
 }
 

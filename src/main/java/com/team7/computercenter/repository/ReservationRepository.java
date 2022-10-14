@@ -11,23 +11,19 @@ import java.util.Optional;
 
 @Repository
 public class ReservationRepository {
-
     @Autowired
     private ReservationCrudRepository reservationCrudRepository;
 
-    public List<Reservation> getAll(){
+    public List<Reservation> getAll() {
         return (List<Reservation>) reservationCrudRepository.findAll();
     }
-
-    public Optional<Reservation> getReservation(int idReservation){
-        return reservationCrudRepository.findById(idReservation);
+    public Optional<Reservation> getReservation(int id) {
+        return reservationCrudRepository.findById(id);
     }
-
-    public Reservation save(Reservation r){
-        return reservationCrudRepository.save(r);
+    public Reservation save(Reservation reservation) {
+        return reservationCrudRepository.save(reservation);
     }
-
-    public void delete(Reservation r){
-        reservationCrudRepository.delete(r);
+    public void delete(Reservation reservation){
+        reservationCrudRepository.delete(reservation);
     }
 }
