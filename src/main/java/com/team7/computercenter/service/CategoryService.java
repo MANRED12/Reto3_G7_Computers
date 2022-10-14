@@ -31,24 +31,20 @@ public class CategoryService {
             }
         }
     }
-    public Category update(Category c){
-        if(c.getId()!=null){
+    public Category update(Category c) {
+        if (c.getId() != null) {
             Optional<Category> q = categoryRepository.getCategory(c.getId());
-            if(q.isPresent()){
-                if(c.getName()!=null){
-                    q.get().setName(c.getName());
-                }
-                if(c.getDescription()!=null){
+            if (q.isPresent()) {
+                if (c.getDescription() != null) {
                     q.get().setDescription(c.getDescription());
                 }
-                categoryRepository.save(q.get());
-                return q.get();
-            }else{
-                return c;
+                if (c.getName() != null) {
+                    q.get().setName(c.getName());
+                }
+                return categoryRepository.save(q.get());
             }
-        }else{
-            return c;
         }
+        return c;
     }
     public boolean delete(int id){
         Boolean del = getCategory(id).map(category -> {
