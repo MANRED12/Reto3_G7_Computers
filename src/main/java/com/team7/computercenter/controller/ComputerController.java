@@ -29,4 +29,9 @@ public class ComputerController {
     public boolean delete(@PathVariable("id")int id){
         return computerService.delete(id);
     }
+    @PutMapping("/update")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Computer update(@RequestBody Computer c) {
+        return computerService.update(c);
+    }
 }

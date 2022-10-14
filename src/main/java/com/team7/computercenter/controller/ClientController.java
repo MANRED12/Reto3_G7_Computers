@@ -30,4 +30,9 @@ public class ClientController {
     public boolean delete(@PathVariable("id")int id){
         return clientService.delete(id);
     }
+    @PutMapping("/update")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Client update(@RequestBody Client c) {
+        return clientService.update(c);
+    }
 }

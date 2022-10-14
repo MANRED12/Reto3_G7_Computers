@@ -1,5 +1,6 @@
 package com.team7.computercenter.controller;
 
+import com.team7.computercenter.entities.Reservation;
 import com.team7.computercenter.entities.Score;
 import com.team7.computercenter.service.ScoreService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,5 +24,10 @@ public class ScoreController {
     @ResponseStatus(HttpStatus.CREATED)
     public Score save(@RequestBody Score s){
         return scoreService.save(s);
+    }
+    @PutMapping("/update")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Score update(@RequestBody Score s) {
+        return scoreService.update(s);
     }
 }

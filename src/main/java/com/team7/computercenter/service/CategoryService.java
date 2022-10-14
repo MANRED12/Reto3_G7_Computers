@@ -20,14 +20,14 @@ public class CategoryService {
         return categoryRepository.getCategory(id);
     }
     public Category save(Category c){
-        if(c.getId() == null){
+        if(c.getId()==null){
             return categoryRepository.save(c);
         }else {
-            Optional<Category> e = categoryRepository.getCategory(c.getId());
-            if(e.isPresent()){
-                return c;
-            }else{
+            Optional<Category> ctg = categoryRepository.getCategory(c.getId());
+            if(!ctg.isPresent()){
                 return categoryRepository.save(c);
+            }else{
+                return c;
             }
         }
     }

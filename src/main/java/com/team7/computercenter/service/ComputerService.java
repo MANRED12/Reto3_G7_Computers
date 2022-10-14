@@ -24,10 +24,10 @@ public class ComputerService {
             return computerRepository.save(p);
         }else {
             Optional<Computer> e = computerRepository.getComputer(p.getId());
-            if(e.isPresent()){
-                return p;
-            }else{
+            if(!e.isPresent()){
                 return computerRepository.save(p);
+            }else{
+                return p;
             }
         }
     }

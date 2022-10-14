@@ -18,7 +18,7 @@ public class Computer implements Serializable {
     @Column(length = 45)//Se establece la longitud máxima del campo brand
     private String brand;
     private Integer year;
-    @Column(length = 250)//Se establece la longitud máxima del campo year
+    @Column(length = 250)//Se establece la longitud máxima del campo description
     private String description;
     @ManyToOne//Creacion de relacion muchos a uno con la tabla category
     @JoinColumn(name = "idCategory")
