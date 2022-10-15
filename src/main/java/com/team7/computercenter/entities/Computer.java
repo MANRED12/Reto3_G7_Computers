@@ -7,8 +7,9 @@ import java.io.Serializable;
 import java.util.List;
 
 @Entity
-@Table(name = "computer")
+@Table(name = "computer")//creación tabla computer
 public class Computer implements Serializable {
+    //Creación atributos de la tabla computer
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,19 +23,24 @@ public class Computer implements Serializable {
 
     private String description;
 
+    //Relacion muchos a 1 con entidad category
     @ManyToOne
     @JoinColumn(name = "categoryId")
     @JsonIgnoreProperties("computers")
     private Category category;
 
 
+    //Relacion 1 a muchos con entidad messages
     @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "computer")
     @JsonIgnoreProperties({"computer","client"})
     private List<Message> messages;
 
+    //Relación 1 a muchos con entidad reservations
     @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "computer")
     @JsonIgnoreProperties({"computer","messages"})
     public List<Reservation> reservations;
+
+    //Getters and setters
 
     public Integer getId() {
         return id;

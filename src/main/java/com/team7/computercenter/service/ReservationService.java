@@ -20,6 +20,7 @@ public class ReservationService {
     public Optional<Reservation> getReservation(int reservationId) {
         return reservationRepository.getReservation(reservationId);
     }
+    //Lógica del método save
     public Reservation save(Reservation reservation){
         if(reservation.getIdReservation()==null){
             return reservationRepository.save(reservation);
@@ -32,6 +33,7 @@ public class ReservationService {
             }
         }
     }
+    //Lógica del método update
     public Reservation update(Reservation reservation){
         if(reservation.getIdReservation()!=null){
             Optional<Reservation> e= reservationRepository.getReservation(reservation.getIdReservation());
@@ -55,6 +57,7 @@ public class ReservationService {
             return reservation;
         }
     }
+    //Lógica del método delete
     public boolean deleteReservation (int id){
         Boolean d = getReservation(id).map(reservation -> {
             reservationRepository.delete(reservation);
