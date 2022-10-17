@@ -17,15 +17,15 @@ public class CategoryRepository {
         return (List<Category>) categoryCrudRepository.findAll();
     }
 
-    public Optional<Category> getCategory(int id){
+    public Optional<Category> getById(int id){
         return categoryCrudRepository.findById(id);
     }
 
-    public Category save(Category category){
-        return categoryCrudRepository.save(category);
+    public Category save(Category c){
+        return categoryCrudRepository.save(c);
     }
 
-    public void delete(Category category){
-        categoryCrudRepository.delete(category);
+    public void delete(Category c){
+        categoryCrudRepository.delete(c);
     }
 }

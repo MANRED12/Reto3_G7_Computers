@@ -16,42 +16,38 @@ public class CategoryService {
     public List<Category> getAll() {
         return categoryRepository.getAll();
     }
-    public Optional<Category> getCategory(int categoryId) {
-        return categoryRepository.getCategory(categoryId);
+    public Optional<Category> getById(int categoryId) {
+        return categoryRepository.getById(categoryId);
     }
-    public Category save(Category category) {
-        if (category.getId() == null) {
-            return categoryRepository.save(category);
-        } else {
-            Optional<Category> category1 = categoryRepository.getCategory(category.getId());
-            if (!category1.isPresent()) {
-                return categoryRepository.save(category);
-            } else {
-                return category;
-            }
+    public Category save(Category c) {
+        if (c.getId() == null) {
+            return categoryRepository.save(c);
         }
-    }
-    public Category update(Category category){
-        if(category.getId()!=null){
-            Optional<Category>g= categoryRepository.getCategory(category.getId());
-            if(g.isPresent()){
-                if(category.getDescription()!=null){
-                    g.get().setDescription(category.getDescription());
-                }
-                if(category.getName()!=null){
-                    g.get().setName(category.getName());
-                }
-                return categoryRepository.save(g.get());
-            }
-        }
-        return category;
+        return c;
     }
     public boolean deleteCategory (int id){
-        Boolean d = getCategory(id).map(category -> {
-            categoryRepository.delete(category);
+        Optional<Category> cOp =categoryRepository.getById(id);
+        if(cOp.isPresent()){
+            categoryRepository.delete(cOp.get());
             return true;
-        }).orElse(false);
-        return d;
+        }
+        return false;
+    }
+    public Category update(Category c){
+        if(c.getId()!=null){
+            Optional<Category>g= categoryRepository.getById(c.getId());
+            if(g.isPresent()){
+                Category k = g.get();
+                if(c.getDescription()!=null){
+                    k.setDescription(c.getDescription());
+                }
+                if(c.getName()!=null){
+                    k.setName(c.getName());
+                }
+                return categoryRepository.save(k);
+            }
+        }
+        return c;
     }
 }
 

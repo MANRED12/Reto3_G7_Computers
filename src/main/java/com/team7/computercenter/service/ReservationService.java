@@ -24,22 +24,15 @@ public class ReservationService {
     public List<Reservation> getAll(){
         return reservationRepository.getAll();
     }
-    public Optional<Reservation> getReservation(int reservationId) {
-        return reservationRepository.getReservation(reservationId);
-    }
-    //Lógica del método save
     public Reservation save(Reservation r){
-        if(r.getIdReservation()==null){
-            return reservationRepository.save(r);
-        }else{
-            Optional<Reservation> e= reservationRepository.getReservation(r.getIdReservation());
-            if(!e.isPresent()){
-                return reservationRepository.save(r);
-            }else{
-                return r;
-            }
-        }
+        return reservationRepository.save(r);
     }
+
+   /* public Optional<Reservation> getReservation(int reservationId) {
+        return reservationRepository.getById(reservationId);
+    }
+
+
     //Lógica del método update
     public Reservation update(Reservation reservation){
         if(reservation.getIdReservation()!=null){
@@ -71,7 +64,7 @@ public class ReservationService {
             return true;
         }).orElse(false);
         return d;
-    }
+    }*/
 
     public List<Reservation> getReservationByPeriod(String dateA, String dateB){
 
@@ -111,6 +104,5 @@ public class ReservationService {
         }
         return tc;
     }
-
 }
 

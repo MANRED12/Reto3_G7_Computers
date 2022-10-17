@@ -19,18 +19,19 @@ public class ReservationController {
     @Autowired
     private ReservationService reservationService;
     @GetMapping("/all")
-    public List<Reservation> getReservations(){
+    public List<Reservation> getAll(){
         return reservationService.getAll();
-    }
-    @GetMapping("/{id}")
-    public Optional<Reservation> getReservation(@PathVariable("id") int reservationId) {
-        return reservationService.getReservation(reservationId);
     }
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
-    public Reservation save(@RequestBody Reservation reservation) {
-        return reservationService.save(reservation);
+    public Reservation save(@RequestBody Reservation r) {
+        return reservationService.save(r);
     }
+   /* @GetMapping("/{id}")
+    public Optional<Reservation> getReservation(@PathVariable("id") int reservationId) {
+        return reservationService.getReservation(reservationId);
+    }
+
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.CREATED)
     public Reservation update(@RequestBody Reservation reservation) {
@@ -40,7 +41,7 @@ public class ReservationController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public boolean delete(@PathVariable("id") int id){
         return reservationService.deleteReservation(id);
-    }
+    }*/
 
     @GetMapping("/report-dates/{dateA}/{dateB}")
     public List<Reservation> getByDates(@PathVariable("dateA") String da,@PathVariable("dateB") String db){
@@ -54,7 +55,4 @@ public class ReservationController {
     public List<TopClients> getTopClients(){
         return reservationService.getTopclients();
     }
-
-
-
 }

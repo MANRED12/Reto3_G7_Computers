@@ -20,7 +20,6 @@ public class ComputerController {
     public List<Computer> getAll(){
         return computerService.getAll();
     }
-
     @GetMapping("/{id}")
     public Optional<Computer> getById(@PathVariable("id") int computerId) {
         return computerService.getById(computerId);
