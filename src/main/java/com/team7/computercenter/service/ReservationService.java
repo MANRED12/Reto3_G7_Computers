@@ -28,15 +28,15 @@ public class ReservationService {
         return reservationRepository.getReservation(reservationId);
     }
     //Lógica del método save
-    public Reservation save(Reservation reservation){
-        if(reservation.getIdReservation()==null){
-            return reservationRepository.save(reservation);
+    public Reservation save(Reservation r){
+        if(r.getIdReservation()==null){
+            return reservationRepository.save(r);
         }else{
-            Optional<Reservation> e= reservationRepository.getReservation(reservation.getIdReservation());
+            Optional<Reservation> e= reservationRepository.getReservation(r.getIdReservation());
             if(!e.isPresent()){
-                return reservationRepository.save(reservation);
+                return reservationRepository.save(r);
             }else{
-                return reservation;
+                return r;
             }
         }
     }
