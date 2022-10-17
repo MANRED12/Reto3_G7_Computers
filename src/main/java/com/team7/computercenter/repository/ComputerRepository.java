@@ -16,13 +16,13 @@ public class ComputerRepository {
     public List<Computer> getAll(){
         return (List<Computer>) computerCrudRepository.findAll();
     }
-    public Optional<Computer> getComputer(int id){
+    public Optional<Computer> getById(int id){
         return computerCrudRepository.findById(id);
     }
-    public Computer save(Computer computer){
-        return computerCrudRepository.save(computer);
+    public Computer save(Computer p){
+        return computerCrudRepository.save(p);
     }
-    public void delete(Computer computer){
-        computerCrudRepository.delete(computer);
+    public void delete(Computer p){
+        computerCrudRepository.delete(p);
     }
 }

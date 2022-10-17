@@ -16,55 +16,48 @@ public class ComputerService {
     public List<Computer> getAll(){
         return computerRepository.getAll();
     }
-    public Optional<Computer> getComputer(int computerId) {
-        return computerRepository.getComputer(computerId);
+    public Optional<Computer> getById(int computerId) {
+        return computerRepository.getById(computerId);
     }
-    public Computer save(Computer computer){
-        if(computer.getId()==null){
-            return computerRepository.save(computer);
-        }else{
-            Optional<Computer>e= computerRepository.getComputer(computer.getId());
-            if(!e.isPresent()){
-                return computerRepository.save(computer);
-            }else{
-                return computer;
-            }
+    public Computer save(Computer p){
+        if(p.getId()==null){
+            return computerRepository.save(p);
         }
-    }
-    public Computer update(Computer computer){
-        if(computer.getId()!=null){
-            Optional<Computer> e= computerRepository.getComputer(computer.getId());
-            if(e.isPresent()){
-                if(computer.getName()!=null){
-                    e.get().setName(computer.getName());
-                }
-                if(computer.getBrand()!=null){
-                    e.get().setBrand(computer.getBrand());
-                }
-                if(computer.getYear()!=null){
-                    e.get().setYear(computer.getYear());
-                }
-                if(computer.getDescription()!=null){
-                    e.get().setDescription(computer.getDescription());
-                }
-                if(computer.getCategory()!=null){
-                    e.get().setCategory(computer.getCategory());
-                }
-                computerRepository.save(e.get());
-                return e.get();
-            }else{
-                return computer;
-            }
-        }else{
-            return computer;
-        }
+        return p;
     }
     public boolean deleteComputer (int id){
-        Boolean d = getComputer(id).map(computer -> {
-            computerRepository.delete(computer);
+        Optional<Computer> pOp=computerRepository.getById(id);
+        if(pOp.isPresent()){
+            computerRepository.delete(pOp.get());
             return true;
-        }).orElse(false);
-        return d;
+        }
+        return false;
+    }
+
+    public Computer update(Computer p){
+        if(p.getId()!=null){
+            Optional<Computer> e= computerRepository.getById(p.getId());
+            if(e.isPresent()){
+                Computer k = e.get();
+                if(p.getName()!=null){
+                    k.setName(p.getName());
+                }
+                if(p.getBrand()!=null){
+                    k.setBrand(p.getBrand());
+                }
+                if(p.getYear()!=null){
+                    k.setYear(p.getYear());
+                }
+                if(p.getDescription()!=null){
+                    k.setDescription(p.getDescription());
+                }
+                if(p.getCategory()!=null){
+                    k.setCategory(p.getCategory());
+                }
+                return computerRepository.save(k);
+            }
+    }
+        return p;
     }
 }
 

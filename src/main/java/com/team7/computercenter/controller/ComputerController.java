@@ -17,25 +17,25 @@ public class ComputerController {
     @Autowired
     private ComputerService computerService;
     @GetMapping("/all")
-    public List<Computer> getComputers(){
+    public List<Computer> getAll(){
         return computerService.getAll();
     }
 
     @GetMapping("/{id}")
-    public Optional<Computer> getComputer(@PathVariable("id") int computerId) {
-        return computerService.getComputer(computerId);
+    public Optional<Computer> getById(@PathVariable("id") int computerId) {
+        return computerService.getById(computerId);
     }
 
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
-    public Computer save(@RequestBody Computer computer) {
-        return computerService.save(computer);
+    public Computer save(@RequestBody Computer p) {
+        return computerService.save(p);
     }
 
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.CREATED)
-    public Computer update(@RequestBody Computer computer) {
-        return computerService.update(computer);
+    public Computer update(@RequestBody Computer p) {
+        return computerService.update(p);
     }
 
     @DeleteMapping("/{id}")
